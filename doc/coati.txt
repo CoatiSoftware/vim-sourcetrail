@@ -1,0 +1,51 @@
+*coati.txt* A short multi line description of your plugin
+
+===============================================================================
+CONTENTS                                                       *coati-contents*
+
+1. Intro ........................................................ |coati-intro|
+2. Requirements .......................................... |coati-requirements|
+3. Commands .................................................. |coati-commands|
+4. Mappings .................................................. |coati-mappings|
+5. Variables ................................................ |coati-variables|
+===============================================================================
+1. Intro                                                          *coati-intro*
+
+This plugin enables vim to communicate with Coati
+
+2. Requirements                                            *coati-requirements*
+
+* Vim needs to be compiled with python support.
+* Coati version to communicate with.
+
+3. Commands                                                    *coati-commands*
+
+Controlls
+* `CoatiRefresh`
+  Refresh the buffer to the last sent position from Coati
+* `CoatiAcivateToken`
+  Send the current cursor position to Coati
+
+Listener server controlls:
+* `CoatiStartServer` start the server
+* `CoatiRestartServer` restarts  the server
+* `CoatiStopServer` stop the server
+
+4. Mappings                                                    *coati-mappings*
+
+Example Mappings:
+`nnoremap <leader>as :CoatiRefresh<CR>`
+`nnoremap <leader>aa :CoatiActivateToken<CR>`
+
+5. Variables                                                  *coati-variables*
+
+Set this to start the server automatically on plugin load
+	`let g:coati_autostart = true`
+
+This are default values if you change it you need to change it in your Coati
+Application too:
+	`let g:coati_ip = "localhost"`
+	`let g:coati_to_vim_port = 6666`
+	`let g:vim_to_coati_port = 6667`
+
+vim:ft=help
