@@ -8,6 +8,7 @@ CONTENTS                                                       *coati-contents*
 3. Commands .................................................. |coati-commands|
 4. Mappings .................................................. |coati-mappings|
 5. Variables ................................................ |coati-variables|
+6. License .................................................... |coati-license|
 ===============================================================================
 1. Intro                                                          *coati-intro*
 
@@ -48,4 +49,8 @@ Application too:
 	`let g:coati_to_vim_port = 6666`
 	`let g:vim_to_coati_port = 6667`
 
-vim:ft=help
+5. License                                                      *coati-license*
+
+MIT License see lincense.txt
+
+vim:ft=help 
