@@ -1,55 +1,55 @@
-*coati.txt* A short multi line description of your plugin
+*sourcetrail.txt* A short multi line description of your plugin
 
 ===============================================================================
-CONTENTS                                                       *coati-contents*
+CONTENTS                                                 *sourcetrail-contents*
 
-1. Intro ........................................................ |coati-intro|
-2. Requirements .......................................... |coati-requirements|
-3. Commands .................................................. |coati-commands|
-4. Mappings .................................................. |coati-mappings|
-5. Variables ................................................ |coati-variables|
-6. License .................................................... |coati-license|
+1. Intro .................................................. |sourcetrail-intro|
+2. Requirements .................................... |sourcetrail-requirements|
+3. Commands ............................................ |sourcetrail-commands|
+4. Mappings ............................................ |sourcetrail-mappings|
+5. Variables .......................................... |sourcetrail-variables|
+6. License .............................................. |sourcetrail-license|
 ===============================================================================
-1. Intro                                                          *coati-intro*
+1. Intro                                                    *sourcetrail-intro*
 
-This plugin enables vim to communicate with Coati
+This plugin enables vim to communicate with Sourcetrail
 
-2. Requirements                                            *coati-requirements*
+2. Requirements                                      *sourcetrail-requirements*
 
 * Vim needs to be compiled with python support.
-* Coati version to communicate with.
+* Sourcetrail version to communicate with.
 
-3. Commands                                                    *coati-commands*
+3. Commands                                              *sourcetrail-commands*
 
 Controlls
-* `CoatiRefresh`
-  Refresh the buffer to the last sent position from Coati
-* `CoatiAcivateToken`
-  Send the current cursor position to Coati
+* `SourcetrailRefresh`
+  Refresh the buffer to the last sent position from Sourcetrail
+* `SourcetrailAcivateToken`
+  Send the current cursor position to Sourcetrail
 
 Listener server controlls:
-* `CoatiStartServer` start the server
-* `CoatiRestartServer` restarts  the server
-* `CoatiStopServer` stop the server
+* `SourcetrailStartServer` start the server
+* `SourcetrailRestartServer` restarts  the server
+* `SourcetrailStopServer` stop the server
 
-4. Mappings                                                    *coati-mappings*
+4. Mappings                                              *sourcetrail-mappings*
 
 Example Mappings:
-`nnoremap <leader>as :CoatiRefresh<CR>`
-`nnoremap <leader>aa :CoatiActivateToken<CR>`
+`nnoremap <leader>as :SourcetrailRefresh<CR>`
+`nnoremap <leader>aa :SourcetrailActivateToken<CR>`
 
-5. Variables                                                  *coati-variables*
+5. Variables                                            *sourcetrail-variables*
 
 Set this to start the server automatically on plugin load
-	`let g:coati_autostart = true`
+	`let g:sourcetrail_autostart = true`
 
-This are default values if you change it you need to change it in your Coati
-Application too:
-	`let g:coati_ip = "localhost"`
-	`let g:coati_to_vim_port = 6666`
-	`let g:vim_to_coati_port = 6667`
+This are default values if you change it you need to change it in your 
+Sourcetrail Application too:
+	`let g:sourcetrail_ip = "localhost"`
+	`let g:sourcetrail_to_vim_port = 6666`
+	`let g:vim_to_sourcetrail_port = 6667`
 
-5. License                                                      *coati-license*
+5. License                                                *sourcetrail-license*
 
 MIT License see lincense.txt
 
