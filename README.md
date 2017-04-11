@@ -1,21 +1,21 @@
 
-# vim-coati
+# vim-sourcetrail
 
-Vim plugin for communication with [Coati](https://coati.io)
+Vim plugin for communication with [Sourcetrail](https://sourcetrail.io)
 
 ## Installation
 
 Use your plugin manager of choice.
 
 - [Pathogen](https://github.com/tpope/vim-pathogen)
-  - `git clone https://github.com/CoatiSoftware/vim-coati ~/.vim/bundle/vim-coati`
+  - `git clone https://github.com/SourcetrailSoftware/vim-sourcetrail ~/.vim/bundle/vim-sourcetrail`
 - [Vundle](https://github.com/gmarik/vundle)
-  - Add `Bundle 'https://github.com/CoatiSoftware/vim-coati'` to .vimrc
+  - Add `Bundle 'https://github.com/SourcetrailSoftware/vim-sourcetrail'` to .vimrc
   - Run `:BundleInstall`
 - [NeoBundle](https://github.com/Shougo/neobundle.vim)
-  - Add `NeoBundle 'https://github.com/CoatiSoftware/vim-coati'` to .vimrc
+  - Add `NeoBundle 'https://github.com/SourcetrailSoftware/vim-sourcetrail'` to .vimrc
   - Run `:NeoBundleInstall`
 - [vim-plug](https://github.com/junegunn/vim-plug)
-  - Add `Plug 'https://github.com/CoatiSoftware/vim-coati'` to .vimrc
+  - Add `Plug 'https://github.com/SourcetrailSoftware/vim-sourcetrail'` to .vimrc
   - Run `:PlugInstall`
 
