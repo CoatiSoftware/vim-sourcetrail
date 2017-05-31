@@ -1,6 +1,7 @@
 """Sourcetrail server"""
 
 import socket
+import errno
 import threading
 import os.path
 import encodings.idna
@@ -10,10 +11,10 @@ import vim
 
 try:
     # Python 3
-    import socketServer
+    import socketserver
 except ImportError:
     # Python 2
-    import Socketserver as socketServer
+    import SocketServer as socketserver
 
 MESSAGE_SPLIT_STRING = ">>"
 
@@ -63,7 +64,7 @@ class Options:
         print("g:sourcetrail_ip         : " + cls.inst().ip_addr)
         print("--------------------")
 
-class ConnectionHandler(socketServer.BaseRequestHandler):
+class ConnectionHandler(socketserver.BaseRequestHandler):
     # This class is instantiated once per connection to the server
     """Handler for incomming messages"""
     timeout = 5
@@ -121,16 +122,17 @@ class Sourcetrail:
 
     @classmethod
     def start_server(cls):
-        """starting the server to listen"""
-        try:
-            socketServer.ThreadingTCPServer.allow_reuse_address = True
-            address = (Options.get_ip(), Options.get_port_sourcetrail_to_vim())
-            cls.inst().__server = socketServer.ThreadingTCPServer(address, ConnectionHandler)
-            server_thread = threading.Thread(target=cls.inst().__server.serve_forever)
-            server_thread.daemon = True
-            server_thread.start()
-        except socket.error:
-            print("Socket needed for Sourcetrail plugin already in use")
+        if cls.inst().__server is None:
+            """starting the server to listen"""
+            try:
+                socketserver.ThreadingTCPServer.allow_reuse_address = True
+                address = (Options.get_ip(), Options.get_port_sourcetrail_to_vim())
+                cls.inst().__server = socketserver.ThreadingTCPServer(address, ConnectionHandler)
+                server_thread = threading.Thread(target=cls.inst().__server.serve_forever)
+                server_thread.daemon = True
+                server_thread.start()
+            except socket.error:
+                print("Socket needed for Sourcetrail plugin already in use")
 
     @classmethod
     def stop_server(cls):
@@ -148,6 +150,7 @@ class Sourcetrail:
 
     @classmethod
     def send_activate_token(cls):
+        cls.inst().start_server()
         """send activate token to sourcetrail"""
         filepath = vim.current.buffer.name
         (row, col) = vim.current.window.cursor
@@ -158,17 +161,23 @@ class Sourcetrail:
                + filepath + MESSAGE_SPLIT_STRING + str(row) \
                + MESSAGE_SPLIT_STRING + str(col) + "<EOM>"
         data = text.encode()
-        cls.inst().send_message(data)
+        try:
+            cls.inst().send_message(data)
+            print("Current Position sent to Sourcetrail")
+        except socket.error:
+            print("Counld not send to Sourcetrail")
 
-        print("Current Position sent to Sourcetrail")
 
     @classmethod
     def send_message(cls, message):
         """sends a message to sourcetrail"""
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.connect((Options.get_ip(), Options.get_port_vim_to_sourcetrail()))
-        sock.send(message)
-        sock.close()
+        try:
+            sock.connect((Options.get_ip(), Options.get_port_vim_to_sourcetrail()))
+            sock.send(message)
+            sock.close()
+        except socket.error:
+            raise socket.error
 
     @classmethod
     def set_new_buffer(cls, filepath, row, col):
