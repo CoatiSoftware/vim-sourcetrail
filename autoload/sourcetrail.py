@@ -76,7 +76,6 @@ class ConnectionHandler(socketserver.BaseRequestHandler):
             message_string = text[0:eom_index]
             message_fields = message_string.split(MESSAGE_SPLIT_STRING)
             if message_fields[0] == "moveCursor":
-                subprocess.call("vim", "--remote", str(message_fields[1]))
                 Sourcetrail.set_new_buffer(message_fields[1], \
                                      int(message_fields[2]), int(message_fields[3]))
             if message_fields[0] == "ping":
@@ -190,10 +189,15 @@ class Sourcetrail:
     @classmethod
     def update_buffer(cls):
         """update"""
-        if cls.inst().__update:
-            vim.command("e! " + cls.inst().__file)
-            vim.current.window.cursor = (cls.inst().__row, cls.inst().__col)
-            cls.inst().__update = False
+        if cls.inst().__server is None:
+            cls.inst().start_server()
+            print("Vim was not listening to Sourcetrail. Vim is listening now.")
+            print("Try to send again from Sourcetrail.")
+        else:
+            if cls.inst().__update:
+                vim.command("e! " + cls.inst().__file)
+                vim.current.window.cursor = (cls.inst().__row, cls.inst().__col)
+                cls.inst().__update = False
 
     @classmethod
     def print_settings(cls):
