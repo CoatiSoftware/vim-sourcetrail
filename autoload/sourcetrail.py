@@ -121,8 +121,8 @@ class Sourcetrail:
 
     @classmethod
     def start_server(cls):
+        """starting the server to listen"""
         if cls.inst().__server is None:
-            """starting the server to listen"""
             try:
                 socketserver.ThreadingTCPServer.allow_reuse_address = True
                 address = (Options.get_ip(), Options.get_port_sourcetrail_to_vim())
@@ -149,8 +149,8 @@ class Sourcetrail:
 
     @classmethod
     def send_activate_token(cls):
-        cls.inst().start_server()
         """send activate token to sourcetrail"""
+        cls.inst().start_server()
         filepath = vim.current.buffer.name
         (row, col) = vim.current.window.cursor
 
