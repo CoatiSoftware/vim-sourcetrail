@@ -79,7 +79,7 @@ class ConnectionHandler(socketserver.BaseRequestHandler):
                 Sourcetrail.set_new_buffer(message_fields[1], \
                                      int(message_fields[2]), int(message_fields[3]))
             if message_fields[0] == "ping":
-                Sourcetrail.send_message("ping>>Vim<EOM>")
+                Sourcetrail.send_message("ping>>Vim<EOM>".encode())
         else:
             print("asdfasfd")
 

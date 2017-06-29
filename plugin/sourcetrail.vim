@@ -6,7 +6,7 @@ endif
 " Vars used by this script, don't change
 let g:sourcetrail_loaded = 1
 
-if !has('python')
+if !has('python') && !has('python3')
 	call sourcetrail#error("Error: Required vim compiled with +python")
 	finish
 endif
