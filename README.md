@@ -10,8 +10,8 @@ Use your plugin manager of choice.
 - [Pathogen](https://github.com/tpope/vim-pathogen)
   - `git clone https://github.com/SourcetrailSoftware/vim-sourcetrail ~/.vim/bundle/vim-sourcetrail`
 - [Vundle](https://github.com/gmarik/vundle)
-  - Add `Bundle 'https://github.com/SourcetrailSoftware/vim-sourcetrail'` to .vimrc
-  - Run `:BundleInstall`
+  - Add `Plugin 'CoatiSoftware/vim-sourcetrail'` to .vimrc
+  - Run `:PlugInstall`
 - [NeoBundle](https://github.com/Shougo/neobundle.vim)
   - Add `NeoBundle 'https://github.com/SourcetrailSoftware/vim-sourcetrail'` to .vimrc
   - Run `:NeoBundleInstall`
