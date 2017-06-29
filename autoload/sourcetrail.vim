@@ -6,11 +6,18 @@ endif
 " Vars used by this script, don't change
 let g:sourcetrail_autoload_loaded = 1
 
-if !has('python')
+if !has('python') && !has('python3')
 	call sourcetrail#error("Error: Required vim compiled with +python")
 	finish
 endif
 
+if has("python3")
+    command! -nargs=1 Py py3 <args>
+    command! -nargs=1 Pyfile py3file <args>
+else
+    command! -nargs=1 Py py <args>
+    command! -nargs=1 Pyfile pyfile <args>
+endif
 
 function! sourcetrail#get(option, ...)
     for l:scope in ['b', 'g', 'l', 's']
@@ -48,15 +55,15 @@ let s:plugin_path = escape(expand('<sfile>:p:h'), '\')
 
 " Load Python script
 if filereadable($VIMRUNTIME."/plugin/python/sourcetrail.py")
-  pyfile $VIMRUNTIME/plugin/sourcetrail.py
+  Pyfile $VIMRUNTIME/plugin/sourcetrail.py
 elseif filereadable($HOME."/.vim/plugin/python/sourcetrail.py")
-  pyfile $HOME/.vim/plugin/python/sourcetrail.py
+  Pyfile $HOME/.vim/plugin/python/sourcetrail.py
 else
   " when we use pathogen for instance
   let $CUR_DIRECTORY=escape(expand('<sfile>:p:h'), '\')
 
   if filereadable($CUR_DIRECTORY."/sourcetrail.py")
-    pyfile $CUR_DIRECTORY/sourcetrail.py
+    Pyfile $CUR_DIRECTORY/sourcetrail.py
   else
     call confirm('vdebug.vim: Unable to find sourcetrail.py. Place it in either your home vim directory or in the Vim runtime directory.', 'OK')
   endif
@@ -64,37 +71,37 @@ endif
 
 
 function! sourcetrail#ShowSettings()
-python << endPython
+Py << endPython
 Sourcetrail.print_settings()
 endPython
 endfunction
 
 function! sourcetrail#SourcetrailInit()
-python << endPython
+Py << endPython
 Sourcetrail.start_server()
 endPython
 endfunction
 
 function! sourcetrail#SourcetrailShutdown()
-python << endPython
+Py << endPython
 Sourcetrail.stop_server()
 endPython
 endfunction
 
 function! sourcetrail#ActivateToken()
-python << endPython
+Py << endPython
 Sourcetrail.send_activate_token()
 endPython
 endfunction
 
 function! sourcetrail#RestartServer()
-python << endPython
+Py << endPython
 Sourcetrail.restart_server()
 endPython
 endfunction
 
 function! sourcetrail#UpdateBuffer()
-python << endPython
+Py << endPython
 Sourcetrail.update_buffer()
 endPython
 endfunction
@@ -106,7 +113,7 @@ if has('python')
 	augroup END
 endif
 
-python sourcetrail = Sourcetrail()
+Py sourcetrail = Sourcetrail()
 
 if( sourcetrail#get("sourcetrail_autostart") )
 	call sourcetrail#SourcetrailInit()
