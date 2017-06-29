@@ -8,14 +8,14 @@ Vim plugin for communication with [Sourcetrail](https://sourcetrail.io)
 Use your plugin manager of choice.
 
 - [Pathogen](https://github.com/tpope/vim-pathogen)
-  - `git clone https://github.com/SourcetrailSoftware/vim-sourcetrail ~/.vim/bundle/vim-sourcetrail`
+  - `git clone https://github.com/CoatiSoftware/vim-sourcetrail ~/.vim/bundle/vim-sourcetrail`
 - [Vundle](https://github.com/gmarik/vundle)
   - Add `Plugin 'CoatiSoftware/vim-sourcetrail'` to .vimrc
   - Run `:PlugInstall`
 - [NeoBundle](https://github.com/Shougo/neobundle.vim)
-  - Add `NeoBundle 'https://github.com/SourcetrailSoftware/vim-sourcetrail'` to .vimrc
+  - Add `NeoBundle 'CoatiSoftware/vim-sourcetrail'` to .vimrc
   - Run `:NeoBundleInstall`
 - [vim-plug](https://github.com/junegunn/vim-plug)
-  - Add `Plug 'https://github.com/SourcetrailSoftware/vim-sourcetrail'` to .vimrc
+  - Add `Plug 'CoatiSoftware/vim-sourcetrail'` to .vimrc
   - Run `:PlugInstall`
 
