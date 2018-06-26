@@ -195,9 +195,10 @@ class Sourcetrail:
             print("Try to send again from Sourcetrail.")
         else:
             if cls.inst().__update:
+                # Must clear the __update flag before "e!" due to autocmd nesting
+                cls.inst().__update = False
                 vim.command("e! " + cls.inst().__file)
                 vim.current.window.cursor = (cls.inst().__row, cls.inst().__col)
-                cls.inst().__update = False
 
     @classmethod
     def print_settings(cls):
