@@ -106,9 +106,10 @@ Sourcetrail.update_buffer()
 endPython
 endfunction
 
-if has('python')
+if has('python') || has('python3')
 	augroup SourcetrailPlugin
-		autocmd FocusGained,BufEnter	* :call sourcetrail#UpdateBuffer()
+		"autocmd nesting is required to run filetype detection
+		autocmd FocusGained,BufEnter	* nested :call sourcetrail#UpdateBuffer()
 		autocmd VimLeavePre				* :call sourcetrail#SourcetrailShutdown()
 	augroup END
 endif
