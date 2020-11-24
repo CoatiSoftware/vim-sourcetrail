@@ -51,6 +51,6 @@ Sourcetrail Application too:
 
 5. License                                                *sourcetrail-license*
 
-MIT License see lincense.txt
+MIT License see license.txt
 
 vim:ft=help 
