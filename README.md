@@ -1,7 +1,7 @@
 
 # vim-sourcetrail
 
-Vim plugin for communication with [Sourcetrail](https://sourcetrail.io)
+Vim plugin for communication with [Sourcetrail](https://www.sourcetrail.com/)
 
 ## Installation
 
